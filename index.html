@@ -95,13 +95,26 @@ footer {
 <div class="row justify-content-center">
 <div class="col-md-6">
 
-<form onsubmit="sendWhatsApp(event)">
-<input type="text" id="name" class="form-control mb-3" placeholder="Your Name" required>
-<input type="tel" id="phone" class="form-control mb-3" placeholder="Phone Number" required>
-<textarea id="message" class="form-control mb-3" rows="4" placeholder="Message"></textarea>
+<form action="https://formspree.io/f/mnjgeknq" method="POST">
 
-<button class="btn btn-success w-100">Send via WhatsApp</button>
+<input type="text" name="name" class="form-control mb-3" placeholder="Your Name" required>
+
+<input type="tel" name="phone" class="form-control mb-3" placeholder="Phone Number" required>
+
+<textarea name="message" class="form-control mb-3" rows="4" placeholder="Message"></textarea>
+
+<!-- Hidden fields -->
+<input type="hidden" name="_subject" value="New Sheep Inquiry from Website">
+<input type="hidden" name="_captcha" value="false">
+
+<button class="btn btn-success w-100">Send Inquiry</button>
+
 </form>
+
+<!-- WhatsApp Button (kept above or below as you like) -->
+<a href="https://wa.me/919963431337" class="btn whatsapp-btn w-100 mt-2">
+    Chat on WhatsApp
+</a>
 
 </div>
 </div>
