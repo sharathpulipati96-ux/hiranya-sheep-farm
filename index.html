@@ -162,7 +162,7 @@ footer {
 
 <form action="https://formspree.io/f/mnjgeknq" method="POST">
 <input type="text" name="name" class="form-control mb-3" placeholder="Your Name" required>
-<input type="tel" name="phone" class="form-control mb-3" placeholder="Phone Number" required>
+<input type="tel" name="phone" class="form-control mb-3" placeholder="Phone Number" pattern="[6-9]{1}[0-9]{9}" maxlength="10" title="Enter valid 10-digit Indian mobile number" required>
 <textarea name="message" class="form-control mb-3" rows="4" placeholder="Message"></textarea>
 
 <input type="hidden" name="_subject" value="New Sheep Inquiry">
