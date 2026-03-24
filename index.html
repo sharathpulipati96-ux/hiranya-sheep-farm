@@ -12,12 +12,14 @@ body {
     font-family: 'Segoe UI', sans-serif;
 }
 
+/* Navbar */
 .navbar-brand {
     font-weight: bold;
     font-size: 1.5rem;
     color: #00ff88 !important;
 }
 
+/* Hero */
 .hero {
     background: url('https://images.unsplash.com/photo-1601758123927-196c7c1e0d89') center/cover no-repeat;
     height: 85vh;
@@ -38,21 +40,52 @@ body {
     font-weight: bold;
 }
 
-.card img {
+/* Cards */
+.card {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.card-img-top {
+    width: 100%;
     height: 220px;
     object-fit: cover;
 }
 
+/* Price */
 .price {
-    color: green;
+    color: #28a745;
     font-weight: bold;
+    font-size: 18px;
 }
 
+/* Buttons */
 .whatsapp-btn {
     background: #25D366;
     color: white;
 }
 
+.whatsapp-btn:hover {
+    background: #1ebe5d;
+}
+
+.btn {
+    border-radius: 8px;
+}
+
+/* Sections */
+.section-title {
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* Footer */
 footer {
     background: #111;
     color: #ccc;
@@ -67,7 +100,7 @@ footer {
 <!-- NAVBAR -->
 <nav class="navbar navbar-dark bg-dark">
 <div class="container">
-<a class="navbar-brand" href="#">🐑 Hiranya Sheep Farms</a>
+<a class="navbar-brand" href="#">🐑 Hiranya Sheep Farm</a>
 </div>
 </nav>
 
@@ -83,37 +116,66 @@ footer {
 <!-- CATALOG -->
 <section id="catalog" class="py-5">
 <div class="container">
-<h2 class="text-center mb-4">Available Sheep</h2>
+<h2 class="text-center section-title">Available Sheep</h2>
 <div class="row" id="sheepContainer"></div>
+</div>
+</section>
+
+<!-- OWNER DETAILS -->
+<section class="py-5 bg-light">
+<div class="container text-center">
+<h2 class="section-title">Owner Details</h2>
+
+<h4>👤 Owner: Sharath Pulipati</h4>
+<p>📞 Phone: <a href="tel:919963431337">+91 9963431337</a></p>
+<p>💬 WhatsApp: <a href="https://wa.me/919963431337">Chat Now</a></p>
+<p>📍 Location: Telangana, India</p>
+
+</div>
+</section>
+
+<!-- MAP SECTION -->
+<section class="py-5">
+<div class="container">
+<h2 class="text-center section-title">Farm Location</h2>
+
+<div class="text-center mb-3">
+<a href="https://maps.google.com/?q=Andhra Pradesh" target="_blank" class="btn btn-primary">
+Open in Google Maps
+</a>
+</div>
+
+<div class="ratio ratio-16x9">
+<iframe 
+src="https://maps.google.com/maps?q=Andhra%20Pradesh&t=&z=13&ie=UTF8&iwloc=&output=embed"
+allowfullscreen>
+</iframe>
+</div>
+
 </div>
 </section>
 
 <!-- CONTACT -->
 <section class="bg-light py-5">
 <div class="container">
-<h2 class="text-center mb-4">Contact / Inquiry</h2>
+<h2 class="text-center section-title">Contact / Inquiry</h2>
+
 <div class="row justify-content-center">
 <div class="col-md-6">
 
 <form action="https://formspree.io/f/mnjgeknq" method="POST">
-
 <input type="text" name="name" class="form-control mb-3" placeholder="Your Name" required>
-
 <input type="tel" name="phone" class="form-control mb-3" placeholder="Phone Number" required>
-
 <textarea name="message" class="form-control mb-3" rows="4" placeholder="Message"></textarea>
 
-<!-- Hidden fields -->
-<input type="hidden" name="_subject" value="New Sheep Inquiry from Website">
+<input type="hidden" name="_subject" value="New Sheep Inquiry">
 <input type="hidden" name="_captcha" value="false">
 
 <button class="btn btn-success w-100">Send Inquiry</button>
-
 </form>
 
-<!-- WhatsApp Button (kept above or below as you like) -->
 <a href="https://wa.me/919963431337" class="btn whatsapp-btn w-100 mt-2">
-    Chat on WhatsApp
+Chat on WhatsApp
 </a>
 
 </div>
@@ -125,10 +187,8 @@ footer {
 <p>© 2026 Hiranya Sheep Farm | All Rights Reserved</p>
 </footer>
 
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
 <script>
-// 🐑 Dynamic Data (Later replace with API/backend)
+// Sheep data
 const sheepData = [
     {
         name: "Boer Sheep",
@@ -149,25 +209,27 @@ const sheepData = [
         weight: "35kg",
         age: "1 Year",
         price: 9000,
-        img: "images/sheep.jfif"
+        img: "images/sheep.jpg"
     }
 ];
 
-// Render sheep dynamically
+// Render cards
 const container = document.getElementById("sheepContainer");
 
-sheepData.forEach((sheep, index) => {
+sheepData.forEach((sheep) => {
     container.innerHTML += `
-    <div class="col-md-4 mb-4">
-        <div class="card shadow">
+    <div class="col-md-4 col-sm-6 mb-4">
+        <div class="card shadow-sm h-100">
+
             <img src="${sheep.img}" class="card-img-top">
-            <div class="card-body">
+
+            <div class="card-body text-center">
                 <h5>${sheep.name}</h5>
                 <p>Weight: ${sheep.weight}</p>
                 <p>Age: ${sheep.age}</p>
                 <p class="price">₹${sheep.price}</p>
 
-                <button class="btn btn-success w-100 mb-2" onclick="payNow(${sheep.price})">Pay Now</button>
+                <!-- Pay Now removed -->
 
                 <a href="https://wa.me/919963431337?text=I want to order ${sheep.name} - ₹${sheep.price}" 
                    class="btn whatsapp-btn w-100">
@@ -177,33 +239,6 @@ sheepData.forEach((sheep, index) => {
         </div>
     </div>`;
 });
-
-// WhatsApp form submit
-function sendWhatsApp(e){
-    e.preventDefault();
-    let name = document.getElementById("name").value;
-    let phone = document.getElementById("phone").value;
-    let msg = document.getElementById("message").value;
-
-    let url = `https://wa.me/YOUR_PHONE_NUMBER?text=Name:${name}, Phone:${phone}, Message:${msg}`;
-    window.open(url, "_blank");
-}
-
-// Razorpay Payment
-function payNow(amount){
-    var options = {
-        "key": "YOUR_RAZORPAY_KEY",
-        "amount": amount * 100,
-        "currency": "INR",
-        "name": "Hiranya Sheep Farm",
-        "description": "Sheep Purchase",
-        "handler": function (response){
-            alert("Payment Successful: " + response.razorpay_payment_id);
-        }
-    };
-    var rzp = new Razorpay(options);
-    rzp.open();
-}
 </script>
 
 </body>
